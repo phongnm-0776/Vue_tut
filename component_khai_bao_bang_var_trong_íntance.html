@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app" >
+        <mycomponent></mycomponent>
+        <mycomponent></mycomponent>
+        <mycomponent></mycomponent>
+      </div>
+      <script>
+         var cpt = {
+              data: function() {
+                  return {
+                      test: 1+1
+                  }
+              },
+              template: "<h1>Duoc in ra tu component ket qua 1+1 {{ test }}<br><button @click='changeTest'>Change 2</button></h1>",
+              methods: {
+                  changeTest: function() {
+                    this.test = "Changed";
+                  }
+              }
+          };
+          // Sau đó ta có thể tạo component dành riêng cho instance mình muốn
+          new Vue({
+              el: '#app',
+              components: {
+                'mycoponent': cpt
+                // Tên commponent, giá trị của component, component vẫn sẽ có biến riêng không hpair global, và các instance khác ko thể sử dụng
+              }
+          })
+      </script>      
+</html>

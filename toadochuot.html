@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app" v-on:mousemove="tinhtoado">
+        <p >Toa do cua chuot la {{ x }} va {{ y }}</p>
+        <!-- Nếu đặt trong thẻ <div> nên nó chỉ bắt sự kiện trong thẻ div (chuột chỉ báo tọa độ trong vùng của thẻ div) -->
+        <p v-on:mousemove="dungchuot">Dung su kien</p>
+
+        <div>
+          <input type="text" v-on:keyup.enter="banphim"  >
+        </div>
+      </div>
+
+
+
+      <script>
+        new Vue({
+          el: "#app",
+          data: {
+              x: 0,
+              y: 0,
+          },
+          methods: {
+            tinhtoado: function(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            dungchuot: function(event){
+                event.stopPropagation();    
+                // sẽ dùng sự kiện event (không cập nhật x y tại vùng <p>)            
+            },
+            banphim: function() {
+                alert("dang nhap phim");
+            }
+          }
+        });
+      </script>      
+</html>

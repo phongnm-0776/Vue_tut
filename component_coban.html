@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app" >
+        <mycomponent></mycomponent>
+        <mycomponent></mycomponent>
+        <mycomponent></mycomponent>
+      </div>
+<!-- Compoonent có thể được sử dụng ở nhiều Vue khác nhau -->
+      <div id="app2" >
+            <mycomponent></mycomponent>
+            <mycomponent></mycomponent>
+            <mycomponent></mycomponent>
+      </div>
+
+
+
+      <script>
+        //   Giả sử ta tạo 1 biến dât ở ngoài như sau:
+          var data= {
+              test: "abc"
+          }
+
+          Vue.component('mycomponent', {
+              data: function() {
+                  return {
+                      test: 1+1
+                  }
+                //   Nếu trong component ta return data được khai báo ở ngoài thì nó sẽ trở thành biến chung cho mọi <mycomponent></mycomponent>
+              },
+              template: "<h1>Duoc in ra tu component ket qua 1+1 {{ test }}<br><button @click='changeTest'>Change 2</button></h1>",
+            //   Trong component nếu ta khai báo 1 method nó sẽ xét là method của component nên ta cần tạo method.
+            // Template của component chỉ được chưa 1 element lớn duy nhất (vd <p>a</p> <h1>b</h1> thì chỉ nhận <p>)
+              methods: {
+                  changeTest: function() {
+                    this.test = "Changed";
+                  }
+              }
+          })
+        // Điểm chú ý của component là có thể tái sử dụng nhiều lần, mỗi component có data riêng biệt với nhau, như trên ta bấm change thì chỉ 
+        // component được bấm đổi giá trị
+
+          new Vue({
+              el: '#app'
+          })
+          new Vue({
+              el: '#app2'
+          })
+        //   Phải có khai báo thì vue mới bắt div này để sử dụng được component
+      </script>      
+</html>

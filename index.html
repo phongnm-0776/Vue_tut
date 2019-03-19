@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app">
+        <h2>Todos:</h2>
+        <input v-on:input="changeValue" type="text"> 
+        <!-- Có thể thay  v-on:input="changeValue" chỉ bẳng v-model="message" thì value của input sẽ change các cái message trong trang  -->
+        <p v-once>
+        {{ message }}
+        <!-- Ok, cú pháp {{}} chỉ dùng cho text ko dùng cho atribute hay class, id -->
+        <!-- Dùng v-once các giá trị trong thẻ chỉ load 1 lần và không cập nhật -->
+        <!-- {{}} nó chỉ in ra text không phải code html, nếu biến in ra là code html thì dùng v-html -->
+        <p v-html="mahtml"></p>
+        </p>
+        <p>
+          {{ message }}
+        </p>
+
+        <!-- <a href="{{ link }}">Click me</a> không được-->
+        <a v-bind:href="link">Click me</a>
+        <!-- Dùng v-bind:atribute để gán atribute theo biến -->
+      </div>
+
+
+      <script>
+        new Vue({
+          el: "#app",
+          data: {
+            message: "OK",
+            link: "https://google.com",
+            mahtml: "<a href='https://google.com'>in ra ma html</a>"
+          },
+          methods: {
+            toggle: function(todo){
+              todo.done = !todo.done
+            },
+            changeValue: function(event){
+              this.message = event.target.value
+            }
+          }
+        });
+      </script>      
+</html>

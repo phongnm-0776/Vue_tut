@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app">
+        <p>{{ diem }}</p>
+      </div>
+
+
+      <script>
+        var app = new Vue({
+          el: "#app",
+          data: {
+            diem: 'Ban A co 7d'
+          },
+          watch: {
+              diem: function(newValue) {
+                  console.log("Diem cua ban da duoc nhap");
+              }
+            //   Khi giá trị diem thay đổi thì nó chạy function 
+          }
+        });
+        //Có cái khác đổi điểm, có thể dùng console đổi...
+        app.diem = "Ban A co 10 diem";
+      </script>      
+</html>

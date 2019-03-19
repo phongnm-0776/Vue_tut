@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+    </head>
+      <div id="app">
+        <p>Gia tri cua x là: {{ tangxf() }}</p>
+
+        <p>Gia tri cua y là: {{ tangyf() }}</p>
+        <!-- Kết quả khi chỉ bâms tăng x hoặc tăng y console log vân có đủ tăng x y, vì trong cùng 1 đối tượng nó sẽ gọi tất cả các method chạy 1 lúc để tính toán lại -->
+        <!-- Ở đây ta có thể thấy x và y là propeti, computed cũng được xem như 1 properti -->
+        <button v-on:click="x++">tang x</button>
+        <p>Gia tri cua x là: {{ tangx }}</p>
+        <button v-on:click="y++">tang y</button>
+        <p>Gia tri cua y là: {{ tangy }}</p>
+        <!-- Là computed thì khi gọi không có (), không có đối số truyền vào, computed chạy chỉ khi các properti liên quan tới nó thay đổi nó sẽ tính lại -->
+        <!-- Nó sẽ cache lại và chi chạy 1 lần nếu không có properti liên quan tới nó thay đổi giá trị -->
+      </div>
+
+
+      <script>
+        new Vue({
+          el: "#app",
+          data: {
+              x: 0,
+              y: 0,
+          },
+          computed: {
+            tangx: function(){
+                    console.log("goi tang x computed");
+                    return this.x;
+                },
+            tangy: function(){
+                    console.log("goi tang y computed");
+                    return this.y;
+                },
+            },
+          methods: {
+            tangxf: function(){
+                console.log("goi tang x function");
+                return this.x;
+            },
+            tangyf: function(){
+                console.log("goi tang y funtion");
+                return this.y;
+            },
+          }
+        });
+      </script>      
+</html>

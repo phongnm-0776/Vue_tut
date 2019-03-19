@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Vue JS</title>
+        <script src="vue.js"></script>
+        <style>
+            .xanhcay{
+                color: green;
+            }
+            .doa{
+                color: red;
+            }
+            .xanhduong{
+                color: blue;
+            }
+        </style>
+    </head>
+      <div id="app">
+          <p v-on:click="trueorf = !trueorf" :class="{doa: trueorf}">ádasdas</p>
+          <p :class="[{doa: trueorf},color]">đâsdasdasdad</p>
+        <input type="text" v-model="color">
+      </div>
+
+      <script>
+        var app = new Vue({
+          el: "#app",
+          data: {
+            trueorf: false,
+            color: 'xanhcay',
+          }
+        });
+      </script>      
+</html>
